@@ -1,6 +1,6 @@
 {
   "name": "node-helpers",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Reusable helpers for Node.js apps",
   "main": "dist/index.js",
   "author": "kozzztya",
@@ -17,7 +17,6 @@
     "lodash": "^4.16.3",
     "npm": "^3.10.8",
     "object-recursive-iterator": "^1.0.2",
-    "raven": "^0.12.1",
     "require-dir": "^0.3.0"
   },
   "devDependencies": {
