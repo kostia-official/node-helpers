@@ -1,0 +1,35 @@
+{
+  "name": "node-helpers",
+  "version": "1.0.3",
+  "description": "Reusable helpers for Node.js apps",
+  "main": "dist/index.js",
+  "author": "kozzztya",
+  "license": "ISC",
+  "scripts": {
+    "build": "babel -d dist/ src/"
+  },
+  "dependencies": {
+    "axios": "^0.14.0",
+    "babel-runtime": "6.6.1",
+    "bluebird": "^3.4.6",
+    "debug": "^2.2.0",
+    "install": "^0.8.1",
+    "lodash": "^4.16.3",
+    "npm": "^3.10.8",
+    "object-recursive-iterator": "^1.0.2",
+    "raven": "^0.12.1",
+    "require-dir": "^0.3.0"
+  },
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "babel-cli": "^6.16.0",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babel-register": "^6.16.3"
+  },
+  "ava": {
+    "require": "babel-register",
+    "babel": "inherit"
+  }
+}
