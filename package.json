@@ -1,6 +1,6 @@
 {
   "name": "node-helpers",
-  "version": "1.0.5",
+  "version": "1.0.8",
   "description": "Reusable helpers for Node.js apps",
   "main": "dist/index.js",
   "author": "kozzztya",
@@ -15,7 +15,6 @@
     "debug": "^2.2.0",
     "install": "^0.8.1",
     "lodash": "^4.16.3",
-    "npm": "^3.10.8",
     "object-recursive-iterator": "^1.0.2",
     "require-dir": "^0.3.0"
   },
@@ -30,5 +29,9 @@
   "ava": {
     "require": "babel-register",
     "babel": "inherit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kozzztya/node-helpers.git"
   }
 }
