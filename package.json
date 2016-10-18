@@ -1,6 +1,6 @@
 {
   "name": "node-helpers",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "description": "Reusable helpers for Node.js apps",
   "main": "dist/index.js",
   "author": "kozzztya",

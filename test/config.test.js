@@ -1,8 +1,9 @@
 process.env.NODE_ENV = 'production';
 process.env.PORT = 80;
+process.env.KEY = 'some';
 
-const defaultConfig = { host: '0.0.0.0', port: 3000, uri: 'test.com' };
-const prodConfig = { port: 'PORT',  uri: 'google.com' };
+const defaultConfig = { host: '0.0.0.0', port: 3000, uri: 'test.com', key: 'KEY' };
+const prodConfig = { port: 'PORT',  uri: 'google.com', key: 'KEY' };
 
 const test = require('ava');
 const config = require('../src').config(defaultConfig, prodConfig);
@@ -20,4 +21,10 @@ test('port from env var', async(t) => {
 test('replace uri', async(t) => {
   const uri = config.get('uri');
   t.is(uri, prodConfig.uri);
+});
+
+test('key from env var for local', async(t) => {
+  process.env.NODE_ENV = 'development';
+  const key = config.get('key');
+  t.is(key, process.env.KEY);
 });

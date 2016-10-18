@@ -2,15 +2,8 @@ const _ = require('lodash');
 const iterator = require('object-recursive-iterator');
 
 module.exports = function (defaultConfig, productionConfig) {
-  iterator.forAll(productionConfig, (path, key, obj) => {
-    if (_.startsWith(obj[key], '$')) {
-      let jsonEnvVarName = _.trim(obj[key], '$');
-      const value = _.trim(process.env[jsonEnvVarName], '\'');
-      if (value) obj[key] = JSON.parse(value);
-      return;
-    }
-    obj[key] = process.env[obj[key]] || obj[key];
-  });
+  resolveConfig(defaultConfig);
+  resolveConfig(productionConfig);
 
   return {
     get: function (name) {
@@ -22,3 +15,16 @@ module.exports = function (defaultConfig, productionConfig) {
     }
   };
 };
+
+function resolveConfig(config) {
+  iterator.forAll(config, (path, key, obj) => {
+    if (_.startsWith(obj[key], '$')) {
+      let jsonEnvVarName = _.trim(obj[key], '$');
+      const value = _.trim(process.env[jsonEnvVarName], '\'');
+      if (value) obj[key] = JSON.parse(value);
+      return;
+    }
+
+    obj[key] = process.env[obj[key]] || obj[key];
+  });
+}
