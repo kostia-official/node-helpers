@@ -1,12 +1,13 @@
 {
   "name": "node-helpers",
-  "version": "1.0.10",
+  "version": "1.1.2",
   "description": "Reusable helpers for Node.js apps",
   "main": "dist/index.js",
   "author": "kozzztya",
   "license": "ISC",
   "scripts": {
-    "build": "babel -d dist/ src/"
+    "build": "babel -d dist/ src/",
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "axios": "^0.14.0",
