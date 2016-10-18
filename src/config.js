@@ -1,26 +1,32 @@
 const _ = require('lodash');
 const iterator = require('object-recursive-iterator');
+const extend = require('deep-extend');
 
 module.exports = function (defaultConfig, productionConfig) {
   resolveConfig(defaultConfig);
   resolveConfig(productionConfig);
 
+  const resultConfig = process.env.NODE_ENV === 'production' ?
+    extend(defaultConfig, productionConfig) :
+    defaultConfig;
+
   return {
-    get: function (name) {
-      const defaultConfigNode = _.get(defaultConfig, name);
-      const prodConfigNode = _.get(productionConfig, name);
+    get: function get(name) {
+      var defaultConfigNode = _.get(defaultConfig, name);
+      var prodConfigNode = _.get(productionConfig, name);
 
       if (process.env.NODE_ENV === 'production') return prodConfigNode || defaultConfigNode;
       return defaultConfigNode;
-    }
+    },
+    ...resultConfig
   };
 };
 
 function resolveConfig(config) {
-  iterator.forAll(config, (path, key, obj) => {
+  iterator.forAll(config, function (path, key, obj) {
     if (_.startsWith(obj[key], '$')) {
-      let jsonEnvVarName = _.trim(obj[key], '$');
-      const value = _.trim(process.env[jsonEnvVarName], '\'');
+      var jsonEnvVarName = _.trim(obj[key], '$');
+      var value = _.trim(process.env[jsonEnvVarName], '\'');
       if (value) obj[key] = JSON.parse(value);
       return;
     }
