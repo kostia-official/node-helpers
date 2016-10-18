@@ -2,11 +2,12 @@ process.env.NODE_ENV = 'production';
 process.env.PORT = 80;
 process.env.KEY = 'some';
 
-const defaultConfig = { host: '0.0.0.0', port: 3000, uri: 'test.com', key: 'KEY' };
-const prodConfig = { port: 'PORT',  uri: 'google.com', key: 'KEY' };
+const defaultConfig = { host: '0.0.0.0', port: 3000, uri: 'test.com', key: 'KEY', id: 'ID' };
+const prodConfig = { port: 'PORT', uri: 'google.com', key: 'KEY', id: 'ID' };
+const envFile = { ID: 'some' };
 
 const test = require('ava');
-const config = require('../src').config(defaultConfig, prodConfig);
+const config = require('../src').config(defaultConfig, prodConfig, envFile);
 
 test('safe getting config with using "get"', async(t) => {
   const host = config.get('host');
@@ -32,4 +33,9 @@ test('key from env var for local', async(t) => {
   process.env.NODE_ENV = 'development';
   const key = config.key;
   t.is(key, process.env.KEY);
+});
+
+test('id from env file', async(t) => {
+  t.is(config.id, envFile.ID);
+  t.is(config.id, process.env.ID);
 });
