@@ -1,6 +1,6 @@
 var _ = require('lodash');
 
-module.exports = (length) => {
+module.exports = (length = 10) => {
   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   
   return _(length)
