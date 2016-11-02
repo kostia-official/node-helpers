@@ -1,6 +1,6 @@
 {
   "name": "node-helpers",
-  "version": "1.1.4",
+  "version": "1.1.6",
   "description": "Reusable helpers for Node.js apps",
   "main": "dist/index.js",
   "author": "kozzztya",
@@ -11,9 +11,11 @@
     "test": "ava -v test/"
   },
   "dependencies": {
+    "amqplib": "^0.4.2",
     "axios": "^0.14.0",
     "babel-runtime": "6.6.1",
     "bluebird": "^3.4.6",
+    "bluebird-retry": "^0.8.0",
     "debug": "^2.2.0",
     "deep-extend": "^0.4.1",
     "install": "^0.8.1",
