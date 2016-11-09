@@ -8,6 +8,7 @@ const randomString = require('./random-string');
 const request = require('./request');
 const serverStatus = require('./server-status');
 const toObject = require('./to-object');
+const timeout = require('./timeout');
 
 module.exports = {
   middlewares: { errorHandler },
@@ -19,5 +20,6 @@ module.exports = {
   randomString,
   request,
   serverStatus,
-  toObject
+  toObject,
+  timeout
 };

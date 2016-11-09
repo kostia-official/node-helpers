@@ -53,12 +53,14 @@ async function assertQueue(queue, exchange, key) {
 
 async function consume(queue, fn) {
   const channel = await getChannel();
-  channel.consume(queue, msg => {
+  channel.consume(queue, async msg => {
     const data = JSON.parse(msg.content.toString());
-    fn(data).then().catch(err => {
+    try {
+      await fn(data);
+    } catch (err) {
       debug('Error in queue', queue, err, data);
       channel.publish(FAIL_EXCHANGE, '', new Buffer(JSON.stringify({ err: err.message, data })));
-    });
+    }
   }, { noAck: true, exclusive: false });
 }
 
