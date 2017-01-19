@@ -1,3 +1,3 @@
 const runTime = new Date();
 
-module.exports = (packageJson) => async()=> ({ version: packageJson.version, uptime: +(new Date()) - +runTime });
+module.exports = ({ name, version }) => async() => ({ name, version, uptime: +(new Date()) - +runTime });
