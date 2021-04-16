@@ -12,6 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: nijel/rabbitmq-action@v1.0.0
+        with:
+          rabbitmq version: '5'
       - uses: actions/setup-node@v2
         with:
           node-version: 12
